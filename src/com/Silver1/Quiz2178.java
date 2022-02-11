@@ -60,7 +60,7 @@ public class Quiz2178 {
 			
 			if(i==N-1&&j==M-1) return;
 			
-//			map[i][j] = 99;
+	//		map[i][j] = 99;
 //			for(int[] a : map)System.out.println(Arrays.toString(a));
 //			System.out.println("cnt :"+cnt);
 //			System.out.println("i :"+i);
