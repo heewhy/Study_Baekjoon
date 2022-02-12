@@ -5,7 +5,7 @@
 - Bronze5-14
 - Bronze4-7
 - Bronze3-16
-- Bronze2-13
+- Bronze2-14
 - Bronze1-5
 
 </hr>
