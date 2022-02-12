@@ -4,16 +4,16 @@
 
 - Bronze5-14
 - Bronze4-7
-- Bronze3-13
+- Bronze3-16
 - Bronze2-13
 - Bronze1-5
 
 </hr>
 
-- Silver5-5
+- Silver5-6
 - Silver4-6
 - Silver3-5
-- Silver2-3
+- Silver2-4
 - Silver1-1
 
 </hr>
