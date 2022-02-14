@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Quiz1167 {
 	
-	static int N,total_length,far;
+	static int N,total_length;
 	static int[][] tree;
 	static int[][] length;
 	static boolean[] visited;
