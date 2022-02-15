@@ -10,7 +10,9 @@ public class Quiz1167 {
 	static int[][] length;
 	static boolean[] visited;
  	
-	
+	/*
+	 * 가장 멀리떨어진 것으로 bfs를 한번 더 돌려서 해결한다.
+	 * */
 
 	public static void main(String[] args) throws Exception{
 		// 트리의 지름

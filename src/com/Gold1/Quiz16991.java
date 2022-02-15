@@ -49,19 +49,29 @@ public class Quiz16991 {
 	private static void perm(int cnt, int flag) {
 		
 		if(cnt==N) {
-			for(int i=0;i<N-1;i++) {
-				System.out.println(Arrays.toString(idx));
-				double a = Math.abs(Math.pow(city[idx[i+1]][0]-city[idx[i]][0], 2));
-				double b = Math.abs(Math.pow(city[idx[i+1]][1]-city[idx[i]][1], 2));
-				Math.min(result, Math.sqrt(a+b));
+			double sum=0.0;
+			double a=0.0;
+			double b=0.0;
+			for(int i=0;i<N;i++) {
+				if(i==N-1) {
+					a = Math.abs(Math.pow(city[idx[0]][0]-city[idx[i]][0], 2));
+					b = Math.abs(Math.pow(city[idx[0]][1]-city[idx[i]][1], 2));
+				}else {
+					a = Math.abs(Math.pow(city[idx[i+1]][0]-city[idx[i]][0], 2));
+					b = Math.abs(Math.pow(city[idx[i+1]][1]-city[idx[i]][1], 2));
+				}
+				sum+=Math.sqrt(a+b);
+				//System.out.println("sum :"+sum);
 			}
+			result=Math.min(result, sum);
+			//System.out.println("result : "+result);
+			return;
 		}
 		
 		for(int i=0;i<N;i++) {
 			if((flag&1<<i)!=0) continue;
 			
-			idx[cnt] = arr[cnt];
-			
+			idx[cnt] = arr[i];
 			perm(cnt+1,flag|1<<i);
 		}
 		
