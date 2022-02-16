@@ -12,6 +12,8 @@ public class Quiz16991 {
 
 	public static void main(String[] args) throws Exception{
 		// 외판원 순회 3
+		
+		//거리를 미리 저장하고 호출을해보자
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringBuilder sb = new StringBuilder();

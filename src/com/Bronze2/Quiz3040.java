@@ -48,7 +48,6 @@ public class Quiz3040 {
 		}
 		
 		for(int i=start;i<N;i++) { 
-			
 			result[cnt]=smalls[i];
 			comb(cnt+1,i+1);
 		}
