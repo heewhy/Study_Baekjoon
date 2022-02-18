@@ -45,6 +45,7 @@ public class Quiz2447 {
 			j /= 3;
 		}
 		sb.append("*");
+		
 	}
 
 	

@@ -5,10 +5,10 @@ import java.util.*;
 
 public class Quiz1987 {
 	
-	static int R,C,cnt;
+	static int R,C,ans;
 	
-	static char[][] map;
-	static boolean[][] visited;
+	static int[][] map;
+	static boolean[] visited;
 	
 	// 우 하 좌 상
 	static int[] dr = {0,-1,0,1}; 
@@ -25,18 +25,20 @@ public class Quiz1987 {
 		R = Integer.parseInt(st.nextToken());
 		C = Integer.parseInt(st.nextToken());
 		
-		map = new char[R][C];
-		visited = new boolean[R][C];
+		map = new int[R][C];
+		visited = new boolean[26];
 		
 		//맵입력
 		for(int i=0;i<R;i++) {
-			map[i] = br.readLine().toCharArray();
+			String str = br.readLine();
+			for(int j=0;j<C;j++) {
+				map[i][j] = str.charAt(j)-'A';
+			}
 		}
-		cnt=0;
-		ArrayList<Character> pass = new ArrayList<Character>();
-		move(0,0,pass);
 		
-		sb.append(cnt);
+		move(0,0,0);
+		
+		sb.append(ans);
 		bw.write(sb.toString());
 		
 		br.close();
@@ -48,27 +50,31 @@ public class Quiz1987 {
 	 * 말을 움직이는 함수
 	 * @param r 현재의 행
 	 * @param c 현재의 열
+	 * @param cnt 이동한 수
 	 * */
 	
-	private static void move(int r, int c,ArrayList<Character> pass) {
+	private static void move(int r, int c,int cnt) {
 		
-		
-		if(!pass.contains(map[r][c])) {
-			//System.out.println(map[r][c]);
-			pass.add(map[r][c]);
-			System.out.println(pass);
-			cnt++;
-			for(int d=0;d<4;d++) {
-				int nr = r+dr[d];
-				int nc = c+dc[d];
-				//System.out.println("nr :"+nr);
-				//System.out.println("nc :"+nc);
-				if(nr>=0&&nr<R&&nc>=0&&nc<C) {
-					move(nr,nc,pass);
+		// 0,0에 저장된 알파벳이 이미 한번 방문한 알파벳이라면,
+		if (visited[map[r][c]]) { 
+			// 정답을 갱신해준다.
+			ans = Math.max(ans, cnt);
+			// 조건에 만족하므로 리턴.
+			return; 
+		} else {
+			visited[map[r][c]] = true;
+			for (int d=0;d<4;d++) {
+				int nr= r + dr[d];
+				int nc = c + dc[d];
+
+				if (nr >= 0 && nc >= 0 && nr < R && nc < C) {
+					move(nr, nc, cnt + 1);
 				}
+
 			}
-		}else {
-			return;
+
+			visited[map[r][c]] = false;
+
 		}
 	}
 
