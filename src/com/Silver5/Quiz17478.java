@@ -38,7 +38,7 @@ public class Quiz17478 {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// 재귀함수가뭔가요?
 		
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();

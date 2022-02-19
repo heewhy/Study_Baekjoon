@@ -3,6 +3,7 @@ package com.Bronze2;
 public class Quiz15596{
 	
 	public static void main(String[] args) {
+		//정수 N개의 합
 		int[] arr = {1,2,3,4};
 		System.out.println(Test(arr));
 	}

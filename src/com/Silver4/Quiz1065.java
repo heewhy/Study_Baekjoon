@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Quiz1065 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// 한수
 		Scanner in = new Scanner(System.in);
 		
 		System.out.print(arithmetic_sequence(in.nextInt()));
