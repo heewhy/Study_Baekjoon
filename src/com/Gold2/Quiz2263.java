@@ -4,57 +4,64 @@ import java.io.*;
 import java.util.*;
 
 public class Quiz2263 {
+	
+	static int N;
+	static int[] in_order;
+	static int[] in_order_idx; // 중위 순회 루트들의 인덱스 정보
+	static int[] post_order;
+	static StringBuilder sb;
 
 	public static void main(String[] args) throws Exception{
-		// 트리의 순회
+		//트리의 순회
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		StringBuilder sb = new StringBuilder();
-		
-		int N = Integer.parseInt(br.readLine());
-		
-		//좌 루트 우
-		String inorder = br.readLine();
-		inorder = inorder.replace(" ","");
-		//좌 우 루트
-		String postorder = br.readLine();
-		postorder = postorder.replace(" ","");
-		//결과는 루트 좌 우
-		
-		//System.out.println(inorder);
-		//System.out.println(postorder);
-		
-		//postorder에서 루트를 구해서 inorder 자르기
-		char c = postorder.charAt(N-1);
-		String root = String.valueOf(c);
-		//System.out.println(root);
-		
-		//split[0] = 좌
-		//split[1] = 우
-		String[] split = inorder.split(root);
+		StringTokenizer st;
 
-		//System.out.println(split[0]);
-		//System.out.println(split[1]);
-		
-		//결과는 루트 좌 우
-		sb.append(root+" ");
-		for(int i=0;i<split[0].length();i++) {
-			sb.append(split[0].charAt(i)+" ");
-		}
-		for(int i=0;i<split[1].length();i++) {
-			sb.append(split[1].charAt(i)+" ");
-		}
-		
-		sb.deleteCharAt(sb.length()-1);
-		
+		N = Integer.parseInt(br.readLine());
+		sb = new StringBuilder();
+
+		in_order = new int[N+1];
+		in_order_idx = new int[N+1];
+		post_order = new int[N+1];
+
+		st = new StringTokenizer(br.readLine());
+		for (int i = 0; i < N; i++)
+			in_order[i] = Integer.parseInt(st.nextToken());
+
+		st = new StringTokenizer(br.readLine());
+		for (int i = 0; i < N; i++)
+			post_order[i] = Integer.parseInt(st.nextToken());
+
+		for (int i = 0; i < N; i++)
+			in_order_idx[in_order[i]] = i;
+
+		getPreOrder(0, N - 1, 0, N - 1);
 		bw.write(sb.toString());
-		
-		br.close();
+        
 		bw.flush();
+		br.close();
 		bw.close();
 	}
-	//크기가 홀수다 찍고
-	//짝수다 바꿔서찍기
+	
+	public static void getPreOrder(int in_start, int in_end, int p_start, int p_end) throws Exception {
+		if (in_start > in_end || p_start > p_end)
+			return;
+
+		// 루트 구하기. 후위 순회의 마지막 인덱스 p_end = 루트의 인덱스
+		int root = post_order[p_end];
+		sb.append(root + " ");
+
+		// 중위 순회에서 루트의 인덱스 구하
+		int rootIdx = in_order_idx[root];
+		// 중위 순회에서 루트 기준 왼쪽에 노드 개수 계산
+		int left = rootIdx - in_start;
+
+		// 좌측 자식 노드
+		getPreOrder(in_start, rootIdx - 1, p_start, p_start + left - 1);
+
+		// 우측 자식 노드
+		getPreOrder(rootIdx + 1, in_end, p_start + left, p_end - 1);
+	}
 }
 /*
 6
