@@ -37,9 +37,12 @@ public class Quiz2491 {
 				upidx++;
 			}
 		}
+		//System.out.println(Arrays.toString(upcnt));
+		//System.out.println(Arrays.toString(downcnt));
 		
 		Arrays.sort(upcnt);
 		Arrays.sort(downcnt);
+		
 		
 		int ans = Math.max(upcnt[N-1]+1, downcnt[N-1]+1);
 		sb.append(ans);
