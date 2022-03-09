@@ -22,6 +22,7 @@ public class Quiz13460 {
 	
 	
 	public static void main(String[] args) throws Exception {
+		//구슬 탈출2
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer stt = new StringTokenizer(br.readLine());
 		

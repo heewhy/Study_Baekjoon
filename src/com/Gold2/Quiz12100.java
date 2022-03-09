@@ -51,6 +51,7 @@ public class Quiz12100 {
         	}
             return;
         }
+        
         int temp[][] = new int[N][N];
         for(int i=0;i<N;i++) {
         	temp[i] = map[i].clone();
@@ -59,8 +60,7 @@ public class Quiz12100 {
         for(int i=0;i<4;i++) {
             move(i);
             game(count+1);
-            for(int a=0;a<N;a++)
-                map[a] = temp[a].clone();
+            for(int a=0;a<N;a++) map[a] = temp[a].clone();
         }
     }
     
