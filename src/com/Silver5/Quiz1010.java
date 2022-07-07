@@ -5,50 +5,48 @@ import java.util.*;
 
 public class Quiz1010 {
 	
-	static int N,M,ans;
-	static int[] arr= new int[30];
+	static int[][] dp = new int[30][30];
 
 	public static void main(String[] args) throws Exception{
 		// 다리 놓기
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		StringBuilder sb = new StringBuilder();
+		
+		int T = Integer.parseInt(br.readLine());
+		
 		StringTokenizer st;
 		
-		//테스트 케이스 입력
-		int T = Integer.parseInt(br.readLine());
-		while(T-->0) {
-			st = new StringTokenizer(br.readLine());
-			//서쪽
-			N = Integer.parseInt(st.nextToken());
-			//동쪽
-			M = Integer.parseInt(st.nextToken());
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < T; i++) {
 			
-			//System.out.println(factorial(N));
+			st = new StringTokenizer(br.readLine(), " ");
 			
-			//int ans = factorial(M)/(factorial(N)*factorial(M-N));
-			ans=0;
-			comb(0,0);
+			// M개중 N개를 뽑는 경우이므로 nCr 에서 n = M, r = N이다.
+			int N = Integer.parseInt(st.nextToken());	// N = r
+			int M = Integer.parseInt(st.nextToken());	// M = n
+					
 			
-			sb.append(ans+"\n");
+			sb.append(combi(M, N)).append('\n');
 		}
-		bw.write(sb.toString());
+		
+		System.out.println(sb);
 		
 		br.close();
-		bw.flush();
-		bw.close();
 	}
 
-	private static void comb(int cnt, int start) {
-		if(cnt==N) {
-			ans++;
-			return;
+	static int combi(int n, int r) {
+		
+		// 이미 풀린 경우 바로 반환
+		if(dp[n][r] > 0) {
+			return dp[n][r]; 
 		}
 		
-		
-		for(int i=start;i<M;i++) {
-			comb(cnt+1,i+1);
+		// 2번 성질
+		if(n == r || r == 0) {
+			return dp[n][r] = 1;
 		}
+		
+		// 1번 성질
+		return dp[n][r] = combi(n - 1, r - 1) + combi(n - 1, r);
 	}
 
 //	private static int factorial(int n) {
